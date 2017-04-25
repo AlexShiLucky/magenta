@@ -48,8 +48,6 @@ struct mx_driver {
 
     mx_driver_ops_t* ops;
 
-    uint32_t flags;
-
     struct list_node node;
 
     const mx_bind_inst_t* binding;

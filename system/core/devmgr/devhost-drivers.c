@@ -175,7 +175,6 @@ mx_status_t devhost_load_driver(mx_driver_t* drv) {
 
         printf("devhost: loaded '%s'\n", rec->libname);
         rec->drv.ops = di->ops;
-//FIXME        rec->drv.flags = di->driver->flags;
         // fallthrough
     }
     case DRV_STATE_NEED_INIT:
