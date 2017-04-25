@@ -166,7 +166,7 @@ mx_status_t devhost_load_driver(mx_driver_t* drv) {
             break;
         }
 
-        magenta_driver_info_t* di = dlsym(dl, "__magenta_driver__");
+        mx_driver_info_t* di = dlsym(dl, "__magenta_driver__");
         if (di == NULL) {
             printf("devhost: driver '%s' missing __magenta_driver__ symbol\n", rec->libname);
             status = ERR_IO;
@@ -341,7 +341,7 @@ static void find_loadable_drivers(const char* path) {
     closedir(dir);
 }
 
-static void init_from_driver_info(magenta_driver_info_t* di, bool for_root) {
+static void init_from_driver_info(mx_driver_info_t* di, bool for_root) {
     driver_record_t* rec;
     if ((rec = calloc(1, sizeof(driver_record_t))) == NULL) {
         return;
@@ -358,10 +358,10 @@ static void init_from_driver_info(magenta_driver_info_t* di, bool for_root) {
 }
 
 
-extern magenta_driver_info_t __start_magenta_drivers[] __WEAK;
-extern magenta_driver_info_t __stop_magenta_drivers[] __WEAK;
+extern mx_driver_info_t __start_magenta_drivers[] __WEAK;
+extern mx_driver_info_t __stop_magenta_drivers[] __WEAK;
 static void init_builtin_drivers(bool for_root) {
-    magenta_driver_info_t* di;
+    mx_driver_info_t* di;
     for (di = __start_magenta_drivers; di < __stop_magenta_drivers; di++) {
         if (is_driver_disabled(di->note->name)) continue;
         init_from_driver_info(di, for_root);

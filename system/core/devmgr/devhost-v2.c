@@ -105,7 +105,7 @@ static mx_status_t dh_find_driver(const char* libname, driver_rec_t** out) {
         goto done;
     }
 
-    magenta_driver_info_t* di = dlsym(dl, "__magenta_driver__");
+    mx_driver_info_t* di = dlsym(dl, "__magenta_driver__");
     if (di == NULL) {
         log(ERROR, "devhost: driver '%s' missing __magenta_driver__ symbol\n", libname);
         rec->status = ERR_IO;
