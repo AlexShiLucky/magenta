@@ -403,7 +403,7 @@ static ssize_t vc_device_ioctl(mx_device_t* dev, uint32_t op, const void* cmd, s
 
 static mx_protocol_device_t vc_device_proto;
 
-extern mx_driver_t _driver_vc_root;
+mx_driver_t _driver_vc_root;
 
 // opening the root device returns a new vc device instance
 static mx_status_t vc_root_open(mx_device_t* dev, mx_device_t** dev_out, uint32_t flags) {

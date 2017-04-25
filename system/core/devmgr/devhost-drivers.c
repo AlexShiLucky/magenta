@@ -175,7 +175,7 @@ mx_status_t devhost_load_driver(mx_driver_t* drv) {
 
         printf("devhost: loaded '%s'\n", rec->libname);
         rec->drv.ops = di->ops;
-        rec->drv.flags = di->driver->flags;
+//FIXME        rec->drv.flags = di->driver->flags;
         // fallthrough
     }
     case DRV_STATE_NEED_INIT:
@@ -349,7 +349,7 @@ static void init_from_driver_info(magenta_driver_info_t* di, bool for_root) {
     }
 
     mtx_init(&rec->lock, mtx_plain);
-    memcpy(&rec->drv, di->driver, sizeof(mx_driver_t));
+//FIXME    memcpy(&rec->drv, di->driver, sizeof(mx_driver_t));
     rec->drv.name = di->note->name;
     rec->drv.ops = di->ops;
     rec->drv.binding = di->binding;
@@ -364,7 +364,7 @@ extern magenta_driver_info_t __stop_magenta_drivers[] __WEAK;
 static void init_builtin_drivers(bool for_root) {
     magenta_driver_info_t* di;
     for (di = __start_magenta_drivers; di < __stop_magenta_drivers; di++) {
-        if (is_driver_disabled(di->driver->name)) continue;
+        if (is_driver_disabled(di->note->name)) continue;
         init_from_driver_info(di, for_root);
     }
 }

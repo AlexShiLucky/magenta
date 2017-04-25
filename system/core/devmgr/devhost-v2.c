@@ -113,7 +113,7 @@ static mx_status_t dh_find_driver(const char* libname, driver_rec_t** out) {
     }
 
     rec->drv.ops = di->ops;
-    rec->drv.flags = di->driver->flags;
+//FIXME    rec->drv.flags = di->driver->flags;
 
     if (rec->drv.ops->init) {
         rec->status = rec->drv.ops->init(&rec->drv);
