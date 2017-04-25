@@ -658,6 +658,11 @@ mx_driver_t _driver_ethernet = {
     },
 };
 
+static mx_driver_ops_t eth_driver_ops = {
+    .bind = eth_bind,
+};
+
+
 MAGENTA_DRIVER_BEGIN(_driver_ethernet, "ethernet", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_ETHERMAC),
-MAGENTA_DRIVER_END(_driver_ethernet)
+MAGENTA_DRIVER_END(_driver_ethernet, eth_driver_ops)

@@ -178,6 +178,10 @@ mx_driver_t _driver_hidctl = {
     },
 };
 
+static mx_driver_ops_t hidctl_driver_ops = {
+    .bind = hidctl_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_hidctl, "hidctl", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_hidctl)
+MAGENTA_DRIVER_END(_driver_hidctl, hidctl_driver_ops)

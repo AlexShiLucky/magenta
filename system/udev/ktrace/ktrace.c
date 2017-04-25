@@ -90,6 +90,10 @@ mx_driver_t _driver_ktrace = {
     },
 };
 
+static mx_driver_ops_t ktrace_driver_ops = {
+    .bind = ktrace_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_ktrace, "ktrace", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_ktrace)
+MAGENTA_DRIVER_END(_driver_ktrace, ktrace_driver_ops)

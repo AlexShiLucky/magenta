@@ -329,7 +329,11 @@ mx_driver_t _driver_gpt= {
     },
 };
 
+static mx_driver_ops_t gpt_driver_ops = {
+    .bind = gpt_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_gpt, "gpt", "magenta", "0.1", 2)
     BI_ABORT_IF_AUTOBIND,
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_BLOCK),
-MAGENTA_DRIVER_END(_driver_gpt)
+MAGENTA_DRIVER_END(_driver_gpt, gpt_driver_ops)

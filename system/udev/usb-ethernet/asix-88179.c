@@ -736,8 +736,12 @@ mx_driver_t _driver_ax88179 = {
     },
 };
 
+static mx_driver_ops_t ax88179_driver_ops = {
+    .bind = ax88179_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_ax88179, "usb-ethernet-ax88179", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_USB),
     BI_ABORT_IF(NE, BIND_USB_VID, ASIX_VID),
     BI_MATCH_IF(EQ, BIND_USB_PID, AX88179_PID),
-MAGENTA_DRIVER_END(_driver_ax88179)
+MAGENTA_DRIVER_END(_driver_ax88179, ax88179_driver_ops)

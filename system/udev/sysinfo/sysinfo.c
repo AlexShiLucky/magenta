@@ -71,5 +71,9 @@ mx_driver_t _driver_sysinfo = {
     },
 };
 
+static mx_driver_ops_t sysinfo_driver_ops = {
+    .init = sysinfo_init,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_sysinfo, "sysinfo", "magenta", "0.1", 0)
-MAGENTA_DRIVER_END(_driver_sysinfo)
+MAGENTA_DRIVER_END(_driver_sysinfo, sysinfo_driver_ops)

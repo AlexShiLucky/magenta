@@ -405,7 +405,11 @@ mx_driver_t _driver_usb_hub = {
     },
 };
 
+static mx_driver_ops_t usb_hub_driver_ops = {
+    .bind = usb_hub_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_usb_hub, "usb-hub", "magenta", "0.1", 2)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_USB),
     BI_MATCH_IF(EQ, BIND_USB_CLASS, USB_CLASS_HUB),
-MAGENTA_DRIVER_END(_driver_usb_hub)
+MAGENTA_DRIVER_END(_driver_usb_hub, usb_hub_driver_ops)

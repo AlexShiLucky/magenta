@@ -238,6 +238,10 @@ mx_driver_t _driver_intel_ethernet = {
     },
 };
 
+static mx_driver_ops_t intel_ethernet_driver_ops = {
+    .bind = eth_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_intel_ethernet, "intel-ethernet", "magenta", "0.1", 9)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_PCI),
@@ -249,4 +253,4 @@ MAGENTA_DRIVER_BEGIN(_driver_intel_ethernet, "intel-ethernet", "magenta", "0.1",
     BI_MATCH_IF(EQ, BIND_PCI_DID, 0x15b7), // Skull Canyon NUC
     BI_MATCH_IF(EQ, BIND_PCI_DID, 0x15b8), // I219
     BI_MATCH_IF(EQ, BIND_PCI_DID, 0x15d8), // Kaby Lake NUC
-MAGENTA_DRIVER_END(_driver_intel_ethernet)
+MAGENTA_DRIVER_END(_driver_intel_ethernet, intel_ethernet_driver_ops)

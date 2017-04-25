@@ -958,6 +958,10 @@ mx_driver_t _driver_intel_pt = {
     },
 };
 
+static mx_driver_ops_t ipt_driver_ops = {
+    .bind = ipt_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_intel_pt, "intel-pt", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_intel_pt)
+MAGENTA_DRIVER_END(_driver_intel_pt, ipt_driver_ops)

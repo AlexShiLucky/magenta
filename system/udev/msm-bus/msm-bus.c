@@ -54,5 +54,9 @@ mx_driver_t _driver_msmroot = {
     },
 };
 
+static mx_driver_ops_t msm_root_driver_ops = {
+    .init = msm_root_init,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_msmroot, "soc", "magenta", "0.1", 0)
-MAGENTA_DRIVER_END(_driver_msmroot)
+MAGENTA_DRIVER_END(_driver_msmroot, msm_root_driver_ops)

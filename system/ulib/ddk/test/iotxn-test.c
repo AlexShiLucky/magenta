@@ -257,7 +257,11 @@ mx_driver_t _driver_iotxn_test = {
     },
 };
 
+static mx_driver_ops_t iotxn_test_driver_ops = {
+    .bind = iotxn_test_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_iotxn_test, "iotxn-test", "magenta", "0.1", 2)
     BI_ABORT_IF_AUTOBIND,
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_TEST),
-MAGENTA_DRIVER_END(_driver_iotxn_test)
+MAGENTA_DRIVER_END(_driver_iotxn_test, iotxn_test_driver_ops)

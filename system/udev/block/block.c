@@ -254,6 +254,10 @@ mx_driver_t _driver_block = {
     },
 };
 
+static mx_driver_ops_t block_driver_ops = {
+    .bind = block_driver_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_block, "block", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_BLOCK_CORE),
-MAGENTA_DRIVER_END(_driver_block)
+MAGENTA_DRIVER_END(_driver_block, block_driver_ops)

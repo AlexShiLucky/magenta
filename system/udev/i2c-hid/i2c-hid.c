@@ -252,8 +252,12 @@ mx_driver_t _driver_i2c_hid = {
     },
 };
 
+static mx_driver_ops_t i2c_hid_driver_ops = {
+    .bind = i2c_hid_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_i2c_hid, "i2c-hid", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PCI_VID, 0x8086),
     BI_ABORT_IF(NE, BIND_PCI_DID, 0x9d61),
     BI_MATCH_IF(EQ, BIND_I2C_ADDR, 0x0010),
-MAGENTA_DRIVER_END(_driver_i2c_hid)
+MAGENTA_DRIVER_END(_driver_i2c_hid, i2c_hid_driver_ops)

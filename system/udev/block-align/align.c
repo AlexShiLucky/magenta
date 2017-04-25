@@ -179,7 +179,11 @@ mx_driver_t _driver_align= {
     },
 };
 
+static mx_driver_ops_t align_driver_ops = {
+    .bind = align_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_align, "align", "magenta", "0.1", 2)
     BI_ABORT_IF_AUTOBIND,
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_BLOCK),
-MAGENTA_DRIVER_END(_driver_align)
+MAGENTA_DRIVER_END(_driver_align, align_driver_ops)

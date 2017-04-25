@@ -812,6 +812,10 @@ mx_driver_t _driver_ahci = {
     },
 };
 
+static mx_driver_ops_t ahci_driver_ops = {
+    .bind = ahci_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_ahci, "ahci", "magenta", "0.1", 13)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_PCI),
@@ -829,4 +833,4 @@ MAGENTA_DRIVER_BEGIN(_driver_ahci, "ahci", "magenta", "0.1", 13)
     BI_LABEL(1),
     BI_MATCH_IF(EQ, BIND_PCI_DID, AMD_FCH_AHCI_DID),
     BI_ABORT(),
-MAGENTA_DRIVER_END(_driver_ahci)
+MAGENTA_DRIVER_END(_driver_ahci, ahci_driver_ops)

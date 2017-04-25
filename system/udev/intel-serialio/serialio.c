@@ -75,6 +75,10 @@ mx_driver_t _intel_serialio = {
     },
 };
 
+static mx_driver_ops_t intel_serialio_driver_ops = {
+    .bind = intel_serialio_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_intel_serialio, "intel-serialio", "magenta", "0.1", 14)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_PCI),
@@ -91,4 +95,4 @@ MAGENTA_DRIVER_BEGIN(_intel_serialio, "intel-serialio", "magenta", "0.1", 14)
     BI_MATCH_IF(EQ, BIND_PCI_DID, INTEL_SUNRISE_POINT_SERIALIO_I2C1_DID),
     BI_MATCH_IF(EQ, BIND_PCI_DID, INTEL_SUNRISE_POINT_SERIALIO_I2C2_DID),
     BI_MATCH_IF(EQ, BIND_PCI_DID, INTEL_SUNRISE_POINT_SERIALIO_I2C3_DID),
-MAGENTA_DRIVER_END(_intel_serialio)
+MAGENTA_DRIVER_END(_intel_serialio, intel_serialio_driver_ops)

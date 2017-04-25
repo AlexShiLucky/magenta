@@ -227,8 +227,12 @@ mx_driver_t _driver_usb_audio = {
     },
 };
 
+static mx_driver_ops_t usb_audio_driver_ops = {
+    .bind = usb_audio_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_usb_audio, "usb-audio", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_USB_CLASS, USB_CLASS_AUDIO),
     BI_ABORT_IF(NE, BIND_USB_SUBCLASS, USB_SUBCLASS_AUDIO_CONTROL),
     BI_MATCH_IF(EQ, BIND_USB_PROTOCOL, 0),
-MAGENTA_DRIVER_END(_driver_usb_audio)
+MAGENTA_DRIVER_END(_driver_usb_audio, usb_audio_driver_ops)

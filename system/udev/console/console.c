@@ -104,6 +104,10 @@ mx_driver_t _driver_console = {
     },
 };
 
+static mx_driver_ops_t console_driver_ops = {
+    .bind = console_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_console, "console", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_console)
+MAGENTA_DRIVER_END(_driver_console, console_driver_ops)

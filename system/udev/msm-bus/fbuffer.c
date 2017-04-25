@@ -144,10 +144,13 @@ mx_driver_t _driver_msm_fbuffer = {
     },
 };
 
-// clang-format off
+static mx_driver_ops_t msm_fbuffer_driver_ops = {
+    .bind = fb_bind,
+};
 
+// clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_msm_fbuffer, "msm-fb", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_SOC),
     BI_ABORT_IF(NE, BIND_SOC_VID, SOC_VID_QCOM),
     BI_MATCH_IF(EQ, BIND_SOC_PID, SOC_PID_TRAPPER),
-MAGENTA_DRIVER_END(_driver_msm_fbuffer)
+MAGENTA_DRIVER_END(_driver_msm_fbuffer, msm_fbuffer_driver_ops)

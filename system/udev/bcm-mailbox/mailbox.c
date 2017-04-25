@@ -499,8 +499,12 @@ mx_driver_t _driver_bcm_mailbox = {
     },
 };
 
+static mx_driver_ops_t bcm_mailbox_bind = {
+    .bind = mailbox_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_bcm_mailbox, "bcm-vc-rpc", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_SOC),
     BI_ABORT_IF(NE, BIND_SOC_VID, SOC_VID_BROADCOMM),
     BI_MATCH_IF(EQ, BIND_SOC_DID, SOC_DID_BROADCOMM_VIDEOCORE_BUS),
-MAGENTA_DRIVER_END(_driver_bcm_mailbox)
+MAGENTA_DRIVER_END(_driver_bcm_mailbox, bcm_mailbox_bind)

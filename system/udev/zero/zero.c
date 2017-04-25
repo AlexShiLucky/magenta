@@ -41,5 +41,9 @@ mx_driver_t _driver_zero = {
     },
 };
 
+static mx_driver_ops_t zero_driver_ops = {
+    .init = zero_init,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_zero, "zero", "magenta", "0.1", 0)
-MAGENTA_DRIVER_END(_driver_zero)
+MAGENTA_DRIVER_END(_driver_zero, zero_driver_ops)

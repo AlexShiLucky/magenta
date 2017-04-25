@@ -642,6 +642,10 @@ mx_driver_t _driver_usb_bt_hci = {
     },
 };
 
+static mx_driver_ops_t usb_bt_hci_driver_ops = {
+    .bind = hci_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_usb_bt_hci, "usb-bt-hci", "magenta", "0.1", 4)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_USB),
 #if defined(USB_VID) && defined(USB_PID)
@@ -653,4 +657,4 @@ MAGENTA_DRIVER_BEGIN(_driver_usb_bt_hci, "usb-bt-hci", "magenta", "0.1", 4)
     BI_ABORT_IF(NE, BIND_USB_SUBCLASS, 1),
     BI_MATCH_IF(EQ, BIND_USB_PROTOCOL, 1),
 #endif
-MAGENTA_DRIVER_END(_driver_usb_bt_hci)
+MAGENTA_DRIVER_END(_driver_usb_bt_hci, usb_bt_hci_driver_ops)

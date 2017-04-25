@@ -164,9 +164,13 @@ mx_driver_t _driver_kaveri_disp = {
     },
 };
 
+static mx_driver_ops_t kaveri_disp_driver_ops = {
+    .bind = kaveri_disp_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_kaveri_disp, "amd-kaveri-display", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_PCI),
     BI_ABORT_IF(NE, BIND_PCI_VID, AMD_GFX_VID),
     BI_MATCH_IF(EQ, BIND_PCI_DID, AMD_KAVERI_R7_DID),
-MAGENTA_DRIVER_END(_driver_kaveri_disp)
+MAGENTA_DRIVER_END(_driver_kaveri_disp, kaveri_disp_driver_ops)

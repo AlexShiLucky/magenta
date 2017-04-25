@@ -214,9 +214,13 @@ mx_driver_t _driver_intel_i915 = {
     },
 };
 
+static mx_driver_ops_t intel_i915_driver_ops = {
+    .bind = intel_i915_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_intel_i915, "intel-i915-display", "magenta", "0.1", 3)
     BI_ABORT_IF(NE, BIND_PROTOCOL, MX_PROTOCOL_PCI),
     BI_ABORT_IF(NE, BIND_PCI_VID, INTEL_I915_VID),
     BI_MATCH_IF(EQ, BIND_PCI_CLASS, 0x3), // Display class
-MAGENTA_DRIVER_END(_driver_intel_i915)
+MAGENTA_DRIVER_END(_driver_intel_i915, intel_i915_driver_ops)

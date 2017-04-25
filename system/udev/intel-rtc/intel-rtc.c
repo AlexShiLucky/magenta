@@ -367,6 +367,10 @@ mx_driver_t _driver_intel_rtc = {
     },
 };
 
+static mx_driver_ops_t intel_rtc_driver_ops = {
+    .bind = intel_rtc_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_intel_rtc, "intel-rtc", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_intel_rtc)
+MAGENTA_DRIVER_END(_driver_intel_rtc, intel_rtc_driver_ops)

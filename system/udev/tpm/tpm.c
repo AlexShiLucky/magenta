@@ -220,6 +220,10 @@ mx_driver_t _driver_tpm = {
     },
 };
 
+static mx_driver_ops_t tpm_driver_ops = {
+    .bind = tpm_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_tpm, "tpm", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_tpm)
+MAGENTA_DRIVER_END(_driver_tpm, tpm_driver_ops)

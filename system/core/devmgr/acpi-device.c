@@ -141,6 +141,10 @@ mx_driver_t _driver_acpi = {
     },
 };
 
+static mx_driver_ops_t acpi_driver_ops = {
+    .bind = acpi_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_acpi, "acpi-bus", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_ACPI_BUS),
-MAGENTA_DRIVER_END(_driver_acpi)
+MAGENTA_DRIVER_END(_driver_acpi, acpi_driver_ops)

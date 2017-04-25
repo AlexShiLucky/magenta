@@ -357,9 +357,13 @@ mx_driver_t _driver_mbr = {
     // this driver if a block device with an MBR is detected.
 };
 
+static mx_driver_ops_t mbr_driver_ops = {
+    .bind = mbr_bind,
+};
+
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_mbr, "mbr", "magenta", "0.1", 2)
     BI_ABORT_IF_AUTOBIND,
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_BLOCK),
-MAGENTA_DRIVER_END(_driver_mbr)
+MAGENTA_DRIVER_END(_driver_mbr, mbr_driver_ops)
 // clang-format on

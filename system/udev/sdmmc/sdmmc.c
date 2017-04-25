@@ -505,9 +505,13 @@ mx_driver_t _driver_sdmmc = {
     },
 };
 
+static mx_driver_ops_t sdmmc_driver_ops = {
+    .bind = sdmmc_bind,
+};
+
 // The formatter does not play nice with these macros.
 // clang-format off
 MAGENTA_DRIVER_BEGIN(_driver_sdmmc, "sdmmc", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_SDMMC),
-MAGENTA_DRIVER_END(_driver_sdmmc)
+MAGENTA_DRIVER_END(_driver_sdmmc, sdmmc_driver_ops)
 // clang-format on

@@ -158,9 +158,10 @@ typedef struct __attribute__((packed)) {
 typedef struct magenta_driver_info {
     list_node_t node;
     mx_driver_t* driver;
+    mx_driver_ops_t* ops;
     const magenta_note_driver_t* note;
     const mx_bind_inst_t* binding;
-    uint32_t binding_size;
+    const uint32_t binding_size;
 } magenta_driver_info_t;
 
 #define MAGENTA_DRIVER_PASTE(a,b) a##b
@@ -204,11 +205,12 @@ const struct __attribute__((packed)) {\
     },\
     /* .binding = */ {
 
-#define MAGENTA_DRIVER_END(Driver) }};\
+#define MAGENTA_DRIVER_END(Driver,Ops) }};\
 extern magenta_driver_info_t MAGENTA_DRIVER_SYMBOL(Driver) MAGENTA_DRIVER_ATTR_DECL; \
 magenta_driver_info_t MAGENTA_DRIVER_SYMBOL(Driver) MAGENTA_DRIVER_ATTR_DEF = { \
     /* .node = */ {},\
     /* .driver = */ &Driver,\
+    /* .ops = */ &Ops, \
     /* .note = */ &MAGENTA_DRIVER_PASTE(__magenta_driver_note__,Driver).driver,\
     /* .binding = */ MAGENTA_DRIVER_PASTE(__magenta_driver_note__,Driver).binding,\
     /* .binding_size = */ sizeof(MAGENTA_DRIVER_PASTE(__magenta_driver_note__,Driver)).binding,\

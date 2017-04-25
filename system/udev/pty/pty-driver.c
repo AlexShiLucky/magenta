@@ -164,6 +164,10 @@ mx_driver_t _driver_ptmx = {
     },
 };
 
+static mx_driver_ops_t ptmx_driver_ops = {
+    .bind = ptmx_bind,
+};
+
 MAGENTA_DRIVER_BEGIN(_driver_ptmx, "ptmx", "magenta", "0.1", 1)
     BI_MATCH_IF(EQ, BIND_PROTOCOL, MX_PROTOCOL_MISC_PARENT),
-MAGENTA_DRIVER_END(_driver_ptmx)
+MAGENTA_DRIVER_END(_driver_ptmx, ptmx_driver_ops)
