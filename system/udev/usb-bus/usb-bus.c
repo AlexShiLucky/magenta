@@ -16,6 +16,7 @@
 // Represents a USB bus, which manages all devices for a USB host controller
 typedef struct usb_bus {
     mx_device_t device;
+    mx_driver_t* driver;
 
     mx_device_t* hci_device;
     usb_hci_protocol_t* hci_protocol;
@@ -33,7 +34,8 @@ static mx_status_t usb_bus_add_device(mx_device_t* device, uint32_t device_id, u
     if (device_id >= bus->max_device_count) return ERR_INVALID_ARGS;
 
     usb_device_t* usb_device;
-    mx_status_t result = usb_device_add(bus->hci_device, bus->hci_protocol, &bus->device, device_id,
+    mx_status_t result = usb_device_add(bus->hci_device, bus->hci_protocol, bus->driver,
+                                        &bus->device, device_id,
                                         hub_id, speed, &usb_device);
     if (result == NO_ERROR) {
         bus->devices[device_id] = usb_device;
@@ -118,6 +120,7 @@ static mx_status_t usb_bus_bind(mx_driver_t* driver, mx_device_t* device, void**
         return ERR_NO_MEMORY;
     }
 
+    bus->driver = driver;
     bus->hci_device = device;
     bus->hci_protocol = hci_protocol;
 

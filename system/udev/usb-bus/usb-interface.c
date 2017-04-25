@@ -145,10 +145,6 @@ static mx_protocol_device_t usb_interface_proto = {
     .release = usb_interface_release,
 };
 
-static mx_driver_t _driver_usb_interface = {
-    .name = "usb-interface",
-};
-
 #define NEXT_DESCRIPTOR(header) ((usb_descriptor_header_t*)((void*)header + header->bLength))
 
 static mx_status_t usb_interface_enable_endpoint(usb_interface_t* intf,
@@ -219,7 +215,7 @@ static usb_protocol_t _usb_protocol = {
     .get_max_transfer_size = usb_interface_get_max_transfer_size,
 };
 
-mx_status_t usb_device_add_interface(usb_device_t* device,
+mx_status_t usb_device_add_interface(usb_device_t* device, mx_driver_t* driver,
                                      usb_device_descriptor_t* device_desc,
                                      usb_interface_descriptor_t* interface_desc,
                                      size_t interface_desc_length) {
@@ -240,7 +236,7 @@ mx_status_t usb_device_add_interface(usb_device_t* device,
     char name[20];
     snprintf(name, sizeof(name), "usb-dev-%03d-i-%d", device->device_id, interface_desc->bInterfaceNumber);
 
-    device_init(&intf->device, &_driver_usb_interface, name, &usb_interface_proto);
+    device_init(&intf->device, driver, name, &usb_interface_proto);
     intf->device.protocol_id = MX_PROTOCOL_USB;
     intf->device.protocol_ops = &_usb_protocol;
 
@@ -285,7 +281,7 @@ mx_status_t usb_device_add_interface(usb_device_t* device,
     return status;
 }
 
-mx_status_t usb_device_add_interface_association(usb_device_t* device,
+mx_status_t usb_device_add_interface_association(usb_device_t* device, mx_driver_t* driver,
                                                  usb_device_descriptor_t* device_desc,
                                                  usb_interface_assoc_descriptor_t* assoc_desc,
                                                  size_t assoc_desc_length) {
@@ -302,7 +298,7 @@ mx_status_t usb_device_add_interface_association(usb_device_t* device,
     char name[20];
     snprintf(name, sizeof(name), "usb-dev-%03d-ia-%d", device->device_id, assoc_desc->iFunction);
 
-    device_init(&intf->device, &_driver_usb_interface, name, &usb_interface_proto);
+    device_init(&intf->device, driver, name, &usb_interface_proto);
     intf->device.protocol_id = MX_PROTOCOL_USB;
     intf->device.protocol_ops = &_usb_protocol;
 

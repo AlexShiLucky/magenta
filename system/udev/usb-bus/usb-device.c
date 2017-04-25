@@ -214,10 +214,6 @@ static mx_protocol_device_t usb_device_proto = {
     .release = usb_device_release,
 };
 
-static mx_driver_t _driver_usb_device = {
-    .name = "usb-device",
-};
-
 #define NEXT_DESCRIPTOR(header) ((usb_descriptor_header_t*)((void*)header + header->bLength))
 
 static mx_status_t usb_device_add_interfaces(usb_device_t* parent,
@@ -257,7 +253,9 @@ static mx_status_t usb_device_add_interfaces(usb_device_t* parent,
             if (!assoc_copy) return ERR_NO_MEMORY;
             memcpy(assoc_copy, assoc_desc, length);
 
-            mx_status_t status = usb_device_add_interface_association(parent, device_desc, assoc_copy, length);
+            mx_status_t status = usb_device_add_interface_association(parent, parent->driver,
+                                                                      device_desc, assoc_copy,
+                                                                      length);
             if (status != NO_ERROR) {
                 result = status;
             }
@@ -291,7 +289,8 @@ static mx_status_t usb_device_add_interfaces(usb_device_t* parent,
             if (!intf_copy) return ERR_NO_MEMORY;
             memcpy(intf_copy, intf_desc, length);
 
-            mx_status_t status = usb_device_add_interface(parent, device_desc, intf_copy, length);
+            mx_status_t status = usb_device_add_interface(parent, parent->driver, device_desc,
+                                                          intf_copy, length);
             if (status != NO_ERROR) {
                 result = status;
             }
@@ -306,7 +305,8 @@ static mx_status_t usb_device_add_interfaces(usb_device_t* parent,
 }
 
 mx_status_t usb_device_add(mx_device_t* hci_device, usb_hci_protocol_t* hci_protocol,
-                           mx_device_t* parent,  uint32_t device_id, uint32_t hub_id,
+                           mx_driver_t* driver,  mx_device_t* parent,
+                           uint32_t device_id, uint32_t hub_id,
                            usb_speed_t speed, usb_device_t** out_device) {
 
     usb_device_t* dev = calloc(1, sizeof(usb_device_t));
@@ -373,6 +373,7 @@ mx_status_t usb_device_add(mx_device_t* hci_device, usb_hci_protocol_t* hci_prot
            device_desc->idProduct, device_desc->bcdUSB >> 8, device_desc->bcdUSB & 0xff);
 
     list_initialize(&dev->children);
+    dev->driver = driver;
     dev->hci_device = hci_device;
     dev->hci_protocol = hci_protocol;
     dev->device_id = device_id;
@@ -383,7 +384,7 @@ mx_status_t usb_device_add(mx_device_t* hci_device, usb_hci_protocol_t* hci_prot
     char name[16];
     snprintf(name, sizeof(name), "usb-dev-%03d", device_id);
 
-    device_init(&dev->device, &_driver_usb_device, name, &usb_device_proto);
+    device_init(&dev->device, driver, name, &usb_device_proto);
     dev->device.protocol_id = MX_PROTOCOL_USB;
 
     // Do not allow binding to root of a composite device.

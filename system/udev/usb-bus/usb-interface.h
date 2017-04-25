@@ -48,12 +48,12 @@ typedef struct {
 
 typedef struct usb_device usb_device_t;
 
-mx_status_t usb_device_add_interface(usb_device_t* device,
+mx_status_t usb_device_add_interface(usb_device_t* device, mx_driver_t* driver,
                                      usb_device_descriptor_t* device_descriptor,
                                      usb_interface_descriptor_t* interface_desc,
                                      size_t interface_desc_length);
 
-mx_status_t usb_device_add_interface_association(usb_device_t* device,
+mx_status_t usb_device_add_interface_association(usb_device_t* device, mx_driver_t* driver,
                                                  usb_device_descriptor_t* device_desc,
                                                  usb_interface_assoc_descriptor_t* assoc_desc,
                                                  size_t assoc_desc_length);
