@@ -158,12 +158,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_kaveri_disp = {
-    .ops = {
-        .bind = kaveri_disp_bind,
-    },
-};
-
 static mx_driver_ops_t kaveri_disp_driver_ops = {
     .bind = kaveri_disp_bind,
 };

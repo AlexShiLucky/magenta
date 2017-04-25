@@ -806,12 +806,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_ahci = {
-    .ops = {
-        .bind = ahci_bind,
-    },
-};
-
 static mx_driver_ops_t ahci_driver_ops = {
     .bind = ahci_bind,
 };

@@ -349,14 +349,6 @@ static mx_status_t mbr_bind(mx_driver_t* drv, mx_device_t* dev, void** cookie) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_mbr = {
-    .ops = {
-        .bind = mbr_bind,
-    },
-    // Don't automatically bind this driver, instead let the FS layer select
-    // this driver if a block device with an MBR is detected.
-};
-
 static mx_driver_ops_t mbr_driver_ops = {
     .bind = mbr_bind,
 };

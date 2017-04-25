@@ -236,12 +236,6 @@ next_interface:
     return NO_ERROR;
 }
 
-mx_driver_t _driver_usb_hid = {
-    .ops = {
-        .bind = usb_hid_bind,
-    },
-};
-
 static mx_driver_ops_t usb_hid_driver_ops = {
     .bind = usb_hid_bind,
 };

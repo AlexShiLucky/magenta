@@ -84,12 +84,6 @@ static mx_status_t ktrace_bind(mx_driver_t* drv, mx_device_t* parent, void** coo
     return NO_ERROR;
 }
 
-mx_driver_t _driver_ktrace = {
-    .ops = {
-        .bind = ktrace_bind,
-    },
-};
-
 static mx_driver_ops_t ktrace_driver_ops = {
     .bind = ktrace_bind,
 };

@@ -46,7 +46,7 @@ typedef struct mx_driver_ops {
 struct mx_driver {
     const char* name;
 
-    mx_driver_ops_t ops;
+    mx_driver_ops_t* ops;
 
     uint32_t flags;
 

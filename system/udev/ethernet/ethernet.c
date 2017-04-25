@@ -652,12 +652,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_ethernet = {
-    .ops = {
-        .bind = eth_bind,
-    },
-};
-
 static mx_driver_ops_t eth_driver_ops = {
     .bind = eth_bind,
 };

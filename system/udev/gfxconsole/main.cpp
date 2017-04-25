@@ -641,7 +641,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_vc_root;
 static mx_driver_ops_t vc_root_driver_ops;
 
 __attribute__((constructor)) static void initialize() {
@@ -652,8 +651,8 @@ __attribute__((constructor)) static void initialize() {
 
     vc_root_proto.open = vc_root_open;
 
-    _driver_vc_root.ops.bind = vc_root_bind;
     vc_root_driver_ops.bind = vc_root_bind;
+    _driver_vc_root.ops = &vc_root_driver_ops;
 }
 
 MAGENTA_DRIVER_BEGIN(_driver_vc_root, "virtconsole", "magenta", "0.1", 1)

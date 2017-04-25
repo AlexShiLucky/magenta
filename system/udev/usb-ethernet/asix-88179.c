@@ -730,12 +730,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_ax88179 = {
-    .ops = {
-        .bind = ax88179_bind,
-    },
-};
-
 static mx_driver_ops_t ax88179_driver_ops = {
     .bind = ax88179_bind,
 };

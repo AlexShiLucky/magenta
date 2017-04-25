@@ -221,12 +221,6 @@ static mx_status_t usb_audio_bind(mx_driver_t* driver, mx_device_t* device, void
     return NO_ERROR;
 }
 
-mx_driver_t _driver_usb_audio = {
-    .ops = {
-        .bind = usb_audio_bind,
-    },
-};
-
 static mx_driver_ops_t usb_audio_driver_ops = {
     .bind = usb_audio_bind,
 };

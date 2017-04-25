@@ -158,12 +158,6 @@ static mx_status_t ptmx_bind(mx_driver_t* drv, mx_device_t* parent, void** cooki
     return NO_ERROR;
 }
 
-mx_driver_t _driver_ptmx = {
-    .ops = {
-        .bind = ptmx_bind,
-    },
-};
-
 static mx_driver_ops_t ptmx_driver_ops = {
     .bind = ptmx_bind,
 };

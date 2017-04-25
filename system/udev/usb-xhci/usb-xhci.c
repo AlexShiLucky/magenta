@@ -298,12 +298,6 @@ error_return:
     return status;
 }
 
-mx_driver_t _driver_usb_xhci = {
-    .ops = {
-        .bind = usb_xhci_bind,
-    },
-};
-
 static mx_driver_ops_t xhci_driver_ops = {
     .bind = usb_xhci_bind,
 };

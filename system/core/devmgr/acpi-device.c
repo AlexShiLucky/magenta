@@ -129,17 +129,15 @@ static mx_status_t acpi_root_init(mx_driver_t* driver) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_acpi_root = {
-    .ops = {
-        .init = acpi_root_init,
-    },
+static mx_driver_ops_t acpi_root_driver_ops = {
+    .init = acpi_root_init,
 };
 
-mx_driver_t _driver_acpi = {
-    .ops = {
-        .bind = acpi_bind,
-    },
+mx_driver_t _driver_acpi_root = {
+    .ops = &acpi_root_driver_ops,
 };
+
+mx_driver_t _driver_acpi;
 
 static mx_driver_ops_t acpi_driver_ops = {
     .bind = acpi_bind,

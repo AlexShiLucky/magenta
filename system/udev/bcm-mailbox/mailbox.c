@@ -492,13 +492,6 @@ mx_status_t mailbox_bind(mx_driver_t* driver, mx_device_t* parent, void** cookie
     return NO_ERROR;
 }
 
-mx_driver_t _driver_bcm_mailbox = {
-    .name = "bcm-vc-rpc",
-    .ops = {
-        .bind = mailbox_bind,
-    },
-};
-
 static mx_driver_ops_t bcm_mailbox_bind = {
     .bind = mailbox_bind,
 };

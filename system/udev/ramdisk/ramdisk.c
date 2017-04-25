@@ -296,12 +296,6 @@ static mx_status_t ramdisk_driver_bind(mx_driver_t* driver, mx_device_t* parent,
     return NO_ERROR;
 }
 
-mx_driver_t _driver_ramdisk = {
-    .ops = {
-        .bind = ramdisk_driver_bind,
-    },
-};
-
 static mx_driver_ops_t ramdisk_driver_ops = {
     .bind = ramdisk_driver_bind,
 };

@@ -399,12 +399,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_usb_hub = {
-    .ops = {
-        .bind = usb_hub_bind,
-    },
-};
-
 static mx_driver_ops_t usb_hub_driver_ops = {
     .bind = usb_hub_bind,
 };

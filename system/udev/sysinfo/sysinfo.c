@@ -65,12 +65,6 @@ mx_status_t sysinfo_init(mx_driver_t* driver) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_sysinfo = {
-    .ops = {
-        .init = sysinfo_init,
-    },
-};
-
 static mx_driver_ops_t sysinfo_driver_ops = {
     .init = sysinfo_init,
 };

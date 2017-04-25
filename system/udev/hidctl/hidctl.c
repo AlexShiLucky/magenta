@@ -172,12 +172,6 @@ static mx_status_t hidctl_bind(mx_driver_t* driver, mx_device_t* parent, void** 
     return NO_ERROR;
 }
 
-mx_driver_t _driver_hidctl = {
-    .ops = {
-        .bind = hidctl_bind,
-    },
-};
-
 static mx_driver_ops_t hidctl_driver_ops = {
     .bind = hidctl_bind,
 };

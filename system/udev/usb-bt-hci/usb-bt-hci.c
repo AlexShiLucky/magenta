@@ -636,12 +636,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_usb_bt_hci = {
-    .ops = {
-        .bind = hci_bind,
-    },
-};
-
 static mx_driver_ops_t usb_bt_hci_driver_ops = {
     .bind = hci_bind,
 };

@@ -763,12 +763,6 @@ static mx_status_t i8042_bind(mx_driver_t* driver, mx_device_t* parent, void** c
     return rc;
 }
 
-mx_driver_t _driver_i8042 = {
-    .ops = {
-        .bind = i8042_bind,
-    },
-};
-
 static mx_driver_ops_t i8042_driver_ops = {
     .bind = i8042_bind,
 };

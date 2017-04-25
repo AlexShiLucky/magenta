@@ -773,12 +773,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_usb_mass_storage = {
-    .ops = {
-        .bind = ums_bind,
-    },
-};
-
 static mx_driver_ops_t usb_mass_storage_driver_ops = {
     .bind = ums_bind,
 };

@@ -361,12 +361,6 @@ static mx_status_t intel_rtc_bind(mx_driver_t* drv, mx_device_t* parent, void** 
 #endif
 }
 
-mx_driver_t _driver_intel_rtc = {
-    .ops = {
-        .bind = intel_rtc_bind,
-    },
-};
-
 static mx_driver_ops_t intel_rtc_driver_ops = {
     .bind = intel_rtc_bind,
 };

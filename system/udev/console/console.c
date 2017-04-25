@@ -98,12 +98,6 @@ static mx_status_t console_bind(mx_driver_t* drv, mx_device_t* parent, void** co
     return NO_ERROR;
 }
 
-mx_driver_t _driver_console = {
-    .ops = {
-        .bind = console_bind,
-    },
-};
-
 static mx_driver_ops_t console_driver_ops = {
     .bind = console_bind,
 };

@@ -248,12 +248,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_block = {
-    .ops = {
-        .bind = block_driver_bind,
-    },
-};
-
 static mx_driver_ops_t block_driver_ops = {
     .bind = block_driver_bind,
 };

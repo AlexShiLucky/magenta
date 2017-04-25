@@ -174,13 +174,13 @@ mx_status_t devhost_load_driver(mx_driver_t* drv) {
         }
 
         printf("devhost: loaded '%s'\n", rec->libname);
-        memcpy(&rec->drv.ops, &di->driver->ops, sizeof(mx_driver_ops_t));
+        rec->drv.ops = di->ops;
         rec->drv.flags = di->driver->flags;
         // fallthrough
     }
     case DRV_STATE_NEED_INIT:
-        if (rec->drv.ops.init) {
-            status = rec->drv.ops.init(drv);
+        if (rec->drv.ops->init) {
+            status = rec->drv.ops->init(drv);
             if (status < 0) {
                 printf("devhost: driver '%s' failed in init: %d\n", rec->libname, status);
                 break;
@@ -351,6 +351,7 @@ static void init_from_driver_info(magenta_driver_info_t* di, bool for_root) {
     mtx_init(&rec->lock, mtx_plain);
     memcpy(&rec->drv, di->driver, sizeof(mx_driver_t));
     rec->drv.name = di->note->name;
+    rec->drv.ops = di->ops;
     rec->drv.binding = di->binding;
     rec->drv.binding_size = di->binding_size;
     rec->state = DRV_STATE_NEED_INIT;
@@ -376,11 +377,11 @@ void devhost_init_drivers(bool as_root) {
     if (as_root) {
         // dmctl must be loaded first as the dynamic loader
         // and other core services depend on it
-        _driver_dmctl.ops.init(&_driver_dmctl);
+        _driver_dmctl.ops->init(&_driver_dmctl);
 
         // acpi must be loaded second until we get the bus
         // manager startup process rationalized
-        _driver_acpi_root.ops.init(&_driver_acpi_root);
+        _driver_acpi_root.ops->init(&_driver_acpi_root);
     }
     init_builtin_drivers(as_root);
     find_loadable_drivers("/system/lib/driver");

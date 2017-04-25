@@ -214,12 +214,6 @@ cleanup_device:
 #endif
 }
 
-mx_driver_t _driver_tpm = {
-    .ops = {
-        .bind = tpm_bind,
-    },
-};
-
 static mx_driver_ops_t tpm_driver_ops = {
     .bind = tpm_bind,
 };

@@ -240,12 +240,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_bochs_vbe = {
-    .ops = {
-        .bind = bochs_vbe_bind,
-    },
-};
-
 static mx_driver_ops_t bochs_vbe_driver_ops = {
     .bind = bochs_vbe_bind,
 };

@@ -48,11 +48,7 @@ static mx_status_t msm_root_init(mx_driver_t* driver) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_msmroot = {
-    .ops = {
-        .init = msm_root_init,
-    },
-};
+mx_driver_t _driver_msmroot;
 
 static mx_driver_ops_t msm_root_driver_ops = {
     .init = msm_root_init,

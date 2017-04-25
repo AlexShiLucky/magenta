@@ -1799,12 +1799,6 @@ error_return:
     return st;
 }
 
-mx_driver_t _driver_usb_dwc = {
-    .ops = {
-        .bind = usb_dwc_bind,
-    },
-};
-
 static mx_driver_ops_t usb_dwc_driver_ops = {
     .bind = usb_dwc_bind,
 };

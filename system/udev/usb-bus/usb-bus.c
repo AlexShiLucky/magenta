@@ -149,12 +149,6 @@ static mx_status_t usb_bus_bind(mx_driver_t* driver, mx_device_t* device, void**
     return status;
 }
 
-mx_driver_t _driver_usb_bus = {
-    .ops = {
-        .bind = usb_bus_bind,
-    },
-};
-
 static mx_driver_ops_t usb_bus_driver_ops = {
     .bind = usb_bus_bind,
 };

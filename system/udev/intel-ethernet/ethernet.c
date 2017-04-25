@@ -232,12 +232,6 @@ fail:
     return ERR_NOT_SUPPORTED;
 }
 
-mx_driver_t _driver_intel_ethernet = {
-    .ops = {
-        .bind = eth_bind,
-    },
-};
-
 static mx_driver_ops_t intel_ethernet_driver_ops = {
     .bind = eth_bind,
 };

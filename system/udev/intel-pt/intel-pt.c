@@ -952,12 +952,6 @@ static mx_status_t ipt_bind(mx_driver_t* driver, mx_device_t* parent, void** coo
     return NO_ERROR;
 }
 
-mx_driver_t _driver_intel_pt = {
-    .ops = {
-        .bind = ipt_bind,
-    },
-};
-
 static mx_driver_ops_t ipt_driver_ops = {
     .bind = ipt_bind,
 };

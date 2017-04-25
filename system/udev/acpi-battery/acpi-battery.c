@@ -132,12 +132,6 @@ static mx_status_t acpi_battery_bind(mx_driver_t* drv, mx_device_t* dev, void** 
     return NO_ERROR;
 }
 
-mx_driver_t _driver_acpi_battery = {
-    .ops = {
-        .bind = acpi_battery_bind,
-    },
-};
-
 static mx_driver_ops_t acpi_battery_driver_ops = {
     .bind = acpi_battery_bind,
 };

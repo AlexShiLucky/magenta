@@ -208,12 +208,6 @@ fail:
     return status;
 }
 
-mx_driver_t _driver_intel_i915 = {
-    .ops = {
-        .bind = intel_i915_bind,
-    },
-};
-
 static mx_driver_ops_t intel_i915_driver_ops = {
     .bind = intel_i915_bind,
 };

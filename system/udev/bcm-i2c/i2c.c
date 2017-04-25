@@ -320,12 +320,6 @@ static mx_status_t i2c_bind(mx_driver_t* driver, mx_device_t* parent, void** coo
     return ret;
 }
 
-mx_driver_t _driver_bcm_i2c = {
-    .ops = {
-        .bind = i2c_bind,
-    },
-};
-
 static mx_driver_ops_t bcm_i2c_driver_ops = {
     .bind = i2c_bind,
 };

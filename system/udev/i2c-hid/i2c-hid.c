@@ -246,12 +246,6 @@ static mx_status_t i2c_hid_bind(mx_driver_t* drv, mx_device_t* dev, void** cooki
     return NO_ERROR;
 }
 
-mx_driver_t _driver_i2c_hid = {
-    .ops = {
-        .bind = i2c_hid_bind,
-    },
-};
-
 static mx_driver_ops_t i2c_hid_driver_ops = {
     .bind = i2c_hid_bind,
 };

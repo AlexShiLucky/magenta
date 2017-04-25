@@ -184,6 +184,7 @@ typedef struct magenta_driver_info {
 #endif
 
 #define MAGENTA_DRIVER_BEGIN(Driver,DriverName,VendorName,Version,BindCount) \
+mx_driver_t Driver; \
 MAGENTA_DRIVER_NOTE(Driver)\
 const struct __attribute__((packed)) {\
     magenta_note_header_t note;\

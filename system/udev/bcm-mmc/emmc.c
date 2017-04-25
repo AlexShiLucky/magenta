@@ -809,12 +809,6 @@ static mx_status_t emmc_bind(mx_driver_t* drv, mx_device_t* dev, void** cookie) 
     return NO_ERROR;
 }
 
-mx_driver_t _driver_emmc_dwc = {
-    .ops = {
-        .bind = emmc_bind,
-    },
-};
-
 static mx_driver_ops_t emmc_dwc_driver_ops = {
     .bind = emmc_bind,
 };

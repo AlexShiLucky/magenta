@@ -186,9 +186,11 @@ mx_status_t dmctl_init(mx_driver_t* driver) {
     return NO_ERROR;
 }
 
+static mx_driver_ops_t dmctl_driver_ops = {
+    .init = dmctl_init,
+};
+
 mx_driver_t _driver_dmctl = {
     .name = "dmctl",
-    .ops = {
-        .init = dmctl_init,
-    },
+    .ops = &dmctl_driver_ops,
 };

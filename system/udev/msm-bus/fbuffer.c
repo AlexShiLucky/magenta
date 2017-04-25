@@ -137,13 +137,6 @@ mx_status_t fb_bind(mx_driver_t* driver, mx_device_t* parent, void** cookie) {
     return status;
 }
 
-mx_driver_t _driver_msm_fbuffer = {
-    .name = "msm-fb",
-    .ops = {
-        .bind = fb_bind,
-    },
-};
-
 static mx_driver_ops_t msm_fbuffer_driver_ops = {
     .bind = fb_bind,
 };

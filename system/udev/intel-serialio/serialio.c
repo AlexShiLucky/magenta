@@ -69,12 +69,6 @@ static mx_status_t intel_serialio_bind(mx_driver_t* drv, mx_device_t* dev, void*
     return res;
 }
 
-mx_driver_t _intel_serialio = {
-    .ops = {
-        .bind = intel_serialio_bind,
-    },
-};
-
 static mx_driver_ops_t intel_serialio_driver_ops = {
     .bind = intel_serialio_bind,
 };

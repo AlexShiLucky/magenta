@@ -323,12 +323,6 @@ static mx_status_t gpt_bind(mx_driver_t* drv, mx_device_t* dev, void** cookie) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_gpt= {
-    .ops = {
-        .bind = gpt_bind,
-    },
-};
-
 static mx_driver_ops_t gpt_driver_ops = {
     .bind = gpt_bind,
 };

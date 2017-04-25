@@ -35,12 +35,6 @@ mx_status_t zero_init(mx_driver_t* driver) {
     return NO_ERROR;
 }
 
-mx_driver_t _driver_zero = {
-    .ops = {
-        .init = zero_init,
-    },
-};
-
 static mx_driver_ops_t zero_driver_ops = {
     .init = zero_init,
 };

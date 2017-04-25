@@ -178,12 +178,6 @@ static mx_status_t test_bind(mx_driver_t* drv, mx_device_t* dev, void** cookie) 
     return NO_ERROR;
 }
 
-mx_driver_t _driver_test = {
-    .ops = {
-        .bind = test_bind,
-    },
-};
-
 static mx_driver_ops_t test_driver_ops = {
     .bind = test_bind,
 };
